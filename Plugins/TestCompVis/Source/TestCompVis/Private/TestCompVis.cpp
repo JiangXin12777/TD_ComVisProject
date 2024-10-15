@@ -14,9 +14,16 @@ void FTestCompVisModule::StartupModule()
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 
 	// 注册组件可视化器
-	TSharedPtr<FYaksueComponentVisualizer> Visualizer = MakeShareable(new FYaksueComponentVisualizer());
-	GUnrealEd->RegisterComponentVisualizer(UYaksueComponent::StaticClass()->GetFName(), Visualizer);
-	Visualizer->OnRegister();
+	if (GUnrealEd != NULL)
+	{
+		TSharedPtr<FYaksueComponentVisualizer> Visualizer = MakeShareable(new FYaksueComponentVisualizer());
+    
+		if (Visualizer.IsValid())
+		{
+			GUnrealEd->RegisterComponentVisualizer(UYaksueComponent::StaticClass()->GetFName(), Visualizer);
+			Visualizer->OnRegister();
+		}
+	}
 }
 
 void FTestCompVisModule::ShutdownModule()
@@ -25,7 +32,10 @@ void FTestCompVisModule::ShutdownModule()
 	// we call this function before unloading the module.
 
 	// 解除注册组件可视化器
-	GUnrealEd->UnregisterComponentVisualizer(UYaksueComponent::StaticClass()->GetFName());
+	if (GUnrealEd != NULL)
+	{
+		GUnrealEd->UnregisterComponentVisualizer(UYaksueComponent::StaticClass()->GetFName());
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

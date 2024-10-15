@@ -10,6 +10,11 @@ UYaksueComponent::UYaksueComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+	//四个顶点位置：
+	Points.Add(FVector(0, 0, 100));
+	Points.Add(FVector(100, 0, 0));
+	Points.Add(FVector(-50, -86, 0));
+	Points.Add(FVector(-50, 86, 0));
 }
 
 

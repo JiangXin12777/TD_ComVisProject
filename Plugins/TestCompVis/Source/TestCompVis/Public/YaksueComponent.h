@@ -22,6 +22,14 @@ public:
 	// Sets default values for this component's properties
 	UYaksueComponent();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Test)
+	TArray<FVector> Points;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Test)
+	ECoordinateSpaceType SpaceType;
+
+	//正在选择的点序号
+	int32 SelectingPointIndex;	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -29,5 +37,4 @@ protected:
 public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 };
